@@ -4,12 +4,12 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "hypernova/version"
 
 Gem::Specification.new do |spec|
-  spec.authors = %w(
-    Jake Teton-Landis
-    Jordan Harband
-    Ian Christian Myers
-    Tommy Dang
-  )
+  spec.authors = [
+    'Jake Teton-Landis',
+    'Jordan Harband',
+    'Ian Christian Myers',
+    'Tommy Dang',
+  ]
   spec.bindir = "exe"
   spec.description = "A Ruby client for the Hypernova service"
   spec.email = %w(

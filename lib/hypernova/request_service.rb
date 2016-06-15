@@ -9,7 +9,7 @@ class Hypernova::RequestService
     return render_batch_blank(jobs) if jobs.empty?
     response_body = Hypernova::ParsedResponse.new(jobs).body
     response_body.each do |index_string, resp|
-      error(resp["error"], jobs[index_string.to_i]) if resp["error"]
+      on_error(build_error(resp["error"]), jobs[index_string.to_i]) if resp["error"]
     end
     build_renderer(jobs).render(response_body)
   end
@@ -20,15 +20,15 @@ class Hypernova::RequestService
 
   private
 
-  def build_error(name, message)
-    Module.const_get(name).new(message)
+  def build_error(error)
+    {
+      'name' => error['name'],
+      'message' => error['message'],
+      'stack' => error['stack'],
+    }
   end
 
   def build_renderer(jobs)
     Hypernova::BatchRenderer.new(jobs)
-  end
-
-  def error(error_data, job)
-    on_error(build_error(error_data["name"], error_data["message"]), job)
   end
 end

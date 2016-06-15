@@ -58,11 +58,10 @@ describe Hypernova::RequestService do
           Hypernova.add_plugin!(plugin)
 
           error_from_response = body["1"]["error"]
-          error = Module.const_get(error_from_response["name"]).new(error_from_response["message"])
 
           allow(batch_renderer).to receive(:render).with(body)
 
-          expect(plugin).to receive(:on_error).with(error, jobs[1])
+          expect(plugin).to receive(:on_error).with(error_from_response, jobs[1])
           request_service.render_batch(jobs)
         end
       end

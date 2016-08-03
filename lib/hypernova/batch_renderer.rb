@@ -1,6 +1,9 @@
 require "hypernova/blank_renderer"
+require "hypernova/plugin_helper"
 
 class Hypernova::BatchRenderer
+  include Hypernova::PluginHelper
+
   def initialize(jobs)
     @jobs = jobs
   end
@@ -34,10 +37,11 @@ class Hypernova::BatchRenderer
   #   "IonCannon.js" => <p>Feel my power!</p>,
   # }
   def render(response)
-    response.each_with_object({}) do |array, hash|
+    fmt_response = response.each_with_object({}) do |array, hash|
       name_of_component = array[0]
       hash[name_of_component] = extract_html_from_result(name_of_component, array[1])
     end
+    after_response(fmt_response, response)
   end
 
   # Example of what is returned by this method:

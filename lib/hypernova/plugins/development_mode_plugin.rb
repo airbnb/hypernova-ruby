@@ -18,6 +18,7 @@ class DevelopmentModePlugin
           <li>#{stack_trace(result).join("</li><li>")}</li>
         </ul>
       </div>
+      #{result["html"]}
     HTML
   end
 

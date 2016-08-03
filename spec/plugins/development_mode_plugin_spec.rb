@@ -29,6 +29,7 @@ describe DevelopmentModePlugin do
   end
 
   def render(name, stack_trace)
+    component = nil
     <<-HTML
       <div style="background-color: #ff5a5f; color: #fff; padding: 12px;">
         <p style="margin: 0">
@@ -39,6 +40,7 @@ describe DevelopmentModePlugin do
           <li>#{stack_trace.join("</li><li>")}</li>
         </ul>
       </div>
+      #{component}
     HTML
   end
 end

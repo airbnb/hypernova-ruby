@@ -6,9 +6,9 @@ describe DevelopmentModePlugin do
     let(:name1) { "Melkor.jsx" }
     let(:name2) { "Noldor.jsx" }
     let(:name3) { "Valar.jsx" }
-    let(:result1) { Helpers.job_failure(500) }
+    let(:result1) { Helpers.job_failure_fallback(500) }
     let(:result2) { Helpers.job_success("<h1>Feanor rules</h1>") }
-    let(:result3) { Helpers.job_failure(404) }
+    let(:result3) { Helpers.job_failure_fallback(404) }
 
     let(:response) do
       hash = {}
@@ -22,25 +22,9 @@ describe DevelopmentModePlugin do
       plugin = described_class.new
       new_response = plugin.after_response(response, response)
 
-      expect(new_response[name1]["html"]).to eq(render(name1, result1["error"]["stack"]))
+      expect(new_response[name1]["html"]).to match('<div>FALLBACK HTML</div>')
       expect(new_response[name2]["html"]).to eq(result2["html"])
-      expect(new_response[name3]["html"]).to eq(render(name3, result3["error"]["stack"]))
+      expect(new_response[name3]["html"]).to match('<div>FALLBACK HTML</div>')
     end
-  end
-
-  def render(name, stack_trace)
-    component = nil
-    <<-HTML
-      <div style="background-color: #ff5a5f; color: #fff; padding: 12px;">
-        <p style="margin: 0">
-          <strong>Development Warning!</strong>
-          The <code>#{name}</code> component failed to render with Hypernova. Error stack:
-        </p>
-        <ul style="padding: 0 20px">
-          <li>#{stack_trace.join("</li><li>")}</li>
-        </ul>
-      </div>
-      #{component}
-    HTML
   end
 end

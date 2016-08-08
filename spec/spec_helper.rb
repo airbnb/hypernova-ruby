@@ -64,6 +64,23 @@ module Helpers
     }
   end
 
+  def self.job_failure_fallback(status)
+    {
+      'success' => false,
+      'html' => '<div>FALLBACK HTML</div>',
+      'meta' => {},
+      'duration' => 17,
+      'statusCode' => status,
+      'error' => {
+        'name' => 'TypeError',
+        'message' => 'You have some error',
+        'stack' => [
+          'OH NOOOOOO',
+        ],
+      },
+    }
+  end
+
   def self.job_failure(status)
     {
       'success' => false,

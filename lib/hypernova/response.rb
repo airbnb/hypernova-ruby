@@ -1,9 +1,6 @@
 require "json"
-require "hypernova/plugin_helper"
 
 class Hypernova::Response
-  include Hypernova::PluginHelper
-
   def initialize(request)
     @request = request
   end
@@ -47,7 +44,6 @@ class Hypernova::Response
     # In the new format, the response results are contained within a "results" key. The top level
     # hash contains a "success" and "error" which relates to the whole batch.
     response = response["results"] || response
-    after_response(response, response)
   end
 
   private

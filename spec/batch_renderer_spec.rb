@@ -31,6 +31,36 @@ describe Hypernova::BatchRenderer do
       expect(hash["b"]).to eq(Hypernova::BlankRenderer.new(jobs["b"]).render)
       expect(hash["c"]).to eq(c_html)
     end
+
+    it "calls after_response if there is a plugin" do
+      class Plugin2
+        def after_response(current_response, original_response)
+          current_response.merge({
+            force_lightning: true,
+            original_response_2: original_response,
+          })
+        end
+      end
+
+      plugin_2 = Plugin2.new
+      Hypernova.add_plugin!(plugin_2)
+      hash = renderer.render(response)
+
+      expect(hash[:force_lightning]).to eq(true)
+    end
+
+    it "does not have after_response" do
+      class Plugin3
+      end
+
+      plugin_3 = Plugin3.new
+      Hypernova.add_plugin!(plugin_3)
+      hash = renderer.render(response)
+
+      expect(hash["a"]).to eq(a_html)
+      expect(hash["b"]).to eq(Hypernova::BlankRenderer.new(jobs["b"]).render)
+      expect(hash["c"]).to eq(c_html)
+    end
   end
 
   describe "#render_blank" do

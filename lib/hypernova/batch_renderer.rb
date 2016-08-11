@@ -39,9 +39,12 @@ class Hypernova::BatchRenderer
   def render(response)
     fmt_response = response.each_with_object({}) do |array, hash|
       name_of_component = array[0]
-      hash[name_of_component] = extract_html_from_result(name_of_component, array[1])
+      hash[name_of_component] = ensure_has_html(name_of_component, array[1])
     end
-    after_response(fmt_response, response)
+
+    after_response(fmt_response, response).each_with_object({}) do |(name, result), hash|
+      hash[name] = result['html']
+    end
   end
 
   # Example of what is returned by this method:
@@ -59,8 +62,9 @@ class Hypernova::BatchRenderer
 
   attr_reader :jobs
 
-  def extract_html_from_result(name_of_component, result)
-    result["html"].nil? ? render_blank_html(jobs[name_of_component]) : result["html"]
+  def ensure_has_html(name_of_component, result)
+    result['html'] = render_blank_html(jobs[name_of_component]) if result['html'].nil?
+    result
   end
 
   def render_blank_html(job)

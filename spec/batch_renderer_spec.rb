@@ -36,7 +36,9 @@ describe Hypernova::BatchRenderer do
       class Plugin2
         def after_response(current_response, original_response)
           current_response.merge({
-            force_lightning: true,
+            force_lightning: {
+              'html' => 'palpatine',
+            },
             original_response_2: original_response,
           })
         end
@@ -46,7 +48,7 @@ describe Hypernova::BatchRenderer do
       Hypernova.add_plugin!(plugin_2)
       hash = renderer.render(response)
 
-      expect(hash[:force_lightning]).to eq(true)
+      expect(hash[:force_lightning]).to eq('palpatine')
     end
 
     it "does not have after_response" do

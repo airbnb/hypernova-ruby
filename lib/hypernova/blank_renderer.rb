@@ -7,8 +7,8 @@ class Hypernova::BlankRenderer
 
   def render
     <<-HTML
-      <div data-hypernova-key="#{key}"></div>
-      <script type="application/json" data-hypernova-key="#{key}"><!--#{encode}--></script>
+      <div data-hypernova-key="#{key}" data-hypernova-id="#{id}"></div>
+      <script type="application/json" data-hypernova-key="#{key}" data-hypernova-id="#{id}"><!--#{encode}--></script>
     HTML
   end
 
@@ -30,5 +30,9 @@ class Hypernova::BlankRenderer
 
   def name
     job[:name]
+  end
+
+  def id
+    @id ||= SecureRandom.uuid
   end
 end

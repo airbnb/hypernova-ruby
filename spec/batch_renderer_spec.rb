@@ -25,6 +25,8 @@ describe Hypernova::BatchRenderer do
     end
 
     it "returns a hash with the job name as the key and the HTML as the value" do
+      allow(SecureRandom).to receive(:uuid).and_return("uuid")
+
       hash = renderer.render(response)
 
       expect(hash["a"]).to eq(a_html)
@@ -52,6 +54,8 @@ describe Hypernova::BatchRenderer do
     end
 
     it "does not have after_response" do
+      allow(SecureRandom).to receive(:uuid).and_return("uuid")
+
       class Plugin3
       end
 
@@ -67,6 +71,8 @@ describe Hypernova::BatchRenderer do
 
   describe "#render_blank" do
     it "returns a hash with the job name as the key and blank HTML as the value" do
+      allow(SecureRandom).to receive(:uuid).and_return("uuid")
+
       hash = renderer.render_blank
       expect(hash["a"]).to eq(Hypernova::BlankRenderer.new(jobs["a"]).render)
       expect(hash["b"]).to eq(Hypernova::BlankRenderer.new(jobs["b"]).render)

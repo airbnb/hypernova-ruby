@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2016-11-10
+
+### Added
+
+- Attribute `data-hypernova-id` was added to the fallback HTML. This is a random `id` that
+  Hypernova uses to bootstrap the application.
+
 ## [1.0.3] - 2016-08-11
 
 ### Fixed

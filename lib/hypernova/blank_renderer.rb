@@ -41,7 +41,8 @@ class Hypernova::BlankRenderer
     attributes = ''
     options = job[:html_options]
     if options && options[:class]
-      attributes << %{ class="#{options[:class]}"}
+      escaped_value = "#{options[:class]}".gsub(/"/, '&quot;')
+      attributes << %{ class="#{escaped_value}"}
     end
     attributes
   end

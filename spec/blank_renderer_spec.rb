@@ -42,6 +42,13 @@ describe Hypernova::BlankRenderer do
       expect(str).to match(/&amp;gt;/)
       expect(str).to match(/&amp;amp;/)
     end
+
+    it "renders HTML attributes" do
+      blank_renderer = described_class.new(job.merge(html_options: { class: 'foo bar' }))
+      html = blank_renderer.render
+
+      expect(html).to include(' class="foo bar">')
+    end
   end
 
   def blank_html(job, stack_trace = [])

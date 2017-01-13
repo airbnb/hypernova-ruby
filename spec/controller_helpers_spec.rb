@@ -135,7 +135,7 @@ describe Hypernova::ControllerHelpers do
                :headers => {
                  'Accept'=>'*/*',
                  'Content-Type'=>'application/json',
-                 'User-Agent'=>'Faraday v0.10.0'
+                 'User-Agent'=>'Faraday v0.10.1'
                }).
           to_return(:status => 200, :body => '{}', :headers => {})
 

@@ -131,12 +131,7 @@ describe Hypernova::ControllerHelpers do
         end
 
         stub_request(:post, "http://mordor.com:1337/batch").
-          with(:body => "{\"0\":{\"name\":\"mordor.js\",\"data\":{}}}",
-               :headers => {
-                 'Accept'=>'*/*',
-                 'Content-Type'=>'application/json',
-                 'User-Agent'=>'Faraday v0.10.1'
-               }).
+          with(:body => "{\"0\":{\"name\":\"mordor.js\",\"data\":{}}}").
           to_return(:status => 200, :body => '{}', :headers => {})
 
         test = TestClass.new

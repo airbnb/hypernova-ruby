@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.2.0] - 2017-02-13
+
+### Changed
+
 - Developer plugin will now display Hypernova error stack traces in monospaced font, instead of as list items. HTML-escape stack traces.
 
 ## [1.1.0] - 2016-11-10

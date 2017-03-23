@@ -1,6 +1,6 @@
 require 'erb'
 
-class DevelopmentModePlugin
+class Hypernova::DevelopmentModePlugin
   def after_response(current_response, _)
     current_response.each do |name, result|
       current_response[name] = result.merge({ "html" => render(name, result) }) if result["error"]

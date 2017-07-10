@@ -68,6 +68,8 @@ module Hypernova
       @hypernova_batch_mapping = {}
     end
 
+    RENDER_STATUS_REGEX = /data-hypernova-cache/
+
     ##
     # Modifies response.body to have all batched hypernova render results
     def hypernova_batch_after
@@ -75,7 +77,11 @@ module Hypernova
         raise NilBatchError.new('called hypernova_batch_after without calling '\
           'hypernova_batch_before. Check your around_filter for :hypernova_render_support')
       end
-      return if @hypernova_batch.empty?
+
+      if @hypernova_batch.empty?
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        return
+      end
 
       jobs = @hypernova_batch.jobs
       hash = jobs.each_with_object({}) do |job, h|
@@ -100,6 +106,12 @@ module Hypernova
         @hypernova_batch_mapping,
         result
       )
+
+      new_body.scan(RENDER_STATUS_REGEX) do |matched|
+        if matched
+          response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        end
+      end
       response.body = new_body
     end
   end

@@ -7,7 +7,7 @@ class Hypernova::BlankRenderer
 
   def render
     <<-HTML
-      <div data-hypernova-key="#{key}" data-hypernova-id="#{id}"></div>
+      <div data-hypernova-key="#{key}" data-hypernova-id="#{id}" data-hypernova-cache="nocache"></div>
       <script type="application/json" data-hypernova-key="#{key}" data-hypernova-id="#{id}"><!--#{encode}--></script>
     HTML
   end

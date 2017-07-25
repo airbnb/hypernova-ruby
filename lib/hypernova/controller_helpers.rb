@@ -88,7 +88,7 @@ module Hypernova
           result = @hypernova_batch.submit!
           on_success(result, hash)
         rescue StandardError => e
-          on_error(e)
+          on_error(e, {}, hash)
           result = @hypernova_batch.submit_fallback!
         end
       else

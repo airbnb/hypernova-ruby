@@ -109,7 +109,7 @@ describe Hypernova::ControllerHelpers do
         allow(test).to receive(:will_send_request).and_raise(error)
         allow(test).to receive(:response).and_return(response)
 
-        expect(test).to receive(:on_error).with(error)
+        expect(test).to receive(:on_error).with(error, hash_including(), hash_including('mordor.js'))
         expect(batch).to receive(:submit_fallback!)
 
         test.hypernova_render_support {}

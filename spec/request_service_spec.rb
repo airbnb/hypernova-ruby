@@ -49,8 +49,8 @@ describe Hypernova::RequestService do
 
         it "calls on_error for each job where the response has an error with a new hash" do
           class Plugin
-            def on_error(error, job)
-              [error.message, job]
+            def on_error(error, job, jobs_hash)
+              [error.message, job, jobs_hash]
             end
           end
 
@@ -61,7 +61,7 @@ describe Hypernova::RequestService do
 
           allow(batch_renderer).to receive(:render).with(body)
 
-          expect(plugin).to receive(:on_error).with(error_from_response, jobs[1])
+          expect(plugin).to receive(:on_error).with(error_from_response, jobs[1], nil)
           request_service.render_batch(jobs)
         end
       end

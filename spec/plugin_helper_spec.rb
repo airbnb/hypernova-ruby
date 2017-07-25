@@ -31,7 +31,7 @@ describe Hypernova::PluginHelper do
   describe "#on_error" do
     it "calls on_error for each plugin" do
       class Plugin
-        def on_error(error, job)
+        def on_error(error, job, jobs_hash)
         end
       end
 
@@ -40,9 +40,10 @@ describe Hypernova::PluginHelper do
 
       error = double("error")
       job = double("job")
+      jobs_hash = double("jobs")
 
-      expect(plugin).to receive(:on_error).with(error, job)
-      TestClass.new.on_error(error, job)
+      expect(plugin).to receive(:on_error).with(error, job, jobs_hash)
+      TestClass.new.on_error(error, job, jobs_hash)
     end
   end
 

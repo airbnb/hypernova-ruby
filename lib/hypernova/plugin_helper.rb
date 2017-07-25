@@ -47,8 +47,8 @@ module Hypernova::PluginHelper
     end
   end
 
-  def on_error(error, job = {})
-    Hypernova.plugins.each { |plugin| plugin.on_error(error, job) if plugin.respond_to?(:on_error) }
+  def on_error(error, job = nil, jobs_hash = nil)
+    Hypernova.plugins.each { |plugin| plugin.on_error(error, job, jobs_hash) if plugin.respond_to?(:on_error) }
   end
 
   def on_success(res, jobs_hash)

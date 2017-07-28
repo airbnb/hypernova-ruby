@@ -1,5 +1,6 @@
 require "spec_helper"
 require "hypernova/batch_renderer"
+require "securerandom"
 
 describe Hypernova::BatchRenderer do
   # Do not override these variables

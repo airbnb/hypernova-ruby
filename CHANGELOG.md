@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.3.0] - 2017-07-28
+
+### Added
+
+- `on_error` now receives the job hash as its third parameter.
+
 ## [1.2.0] - 2017-02-13
 
 ### Changed

@@ -9,7 +9,7 @@ class Hypernova::RequestService
     return render_batch_blank(jobs) if jobs.empty?
     response_body = Hypernova::ParsedResponse.new(jobs).body
     response_body.each do |index_string, resp|
-      on_error(build_error(resp["error"]), jobs[index_string.to_i]) if resp["error"]
+      on_error(build_error(resp["error"]), jobs[index_string]) if resp["error"]
     end
     build_renderer(jobs).render(response_body)
   end

@@ -17,10 +17,10 @@ describe Hypernova::RequestService do
       # Do not override these variables
       let(:batch_renderer) { double("batch_renderer") }
       let(:jobs) do
-        [
-          Helpers.args_1,
-          Helpers.args_2,
-        ]
+        {
+          "0" => Helpers.args_1,
+          "1" => Helpers.args_2,
+        }
       end
       let(:parsed_response) { double("parsed_response", body: body) }
 
@@ -61,7 +61,7 @@ describe Hypernova::RequestService do
 
           allow(batch_renderer).to receive(:render).with(body)
 
-          expect(plugin).to receive(:on_error).with(error_from_response, jobs[1], nil)
+          expect(plugin).to receive(:on_error).with(error_from_response, jobs["1"], nil)
           request_service.render_batch(jobs)
         end
       end

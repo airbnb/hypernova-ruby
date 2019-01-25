@@ -33,9 +33,10 @@ module Hypernova
     ##
     # shortcut method to render a react component
     # @param [String] name the hypernova bundle name, like 'packages/p3/foo.bundle.js' (for now)
-    # @param [Hash] props the props to be passed to the component
+    # @param [Hash] data the props to be passed to the component
+    # @param [Hash] html_options the html options, like 'class: "hello"', for the wrapper div element
     # :^)k|8 <-- this is a chill peep riding a skateboard
-    def render_react_component(component, data = {})
+    def render_react_component(component, data = {}, html_options = nil)
       begin
         new_data = get_view_data(component, data)
       rescue StandardError => e
@@ -46,6 +47,7 @@ module Hypernova
         :data => new_data,
         :name => component,
       }
+      job[:html_options] = html_options if html_options
 
       hypernova_batch_render(job)
     end

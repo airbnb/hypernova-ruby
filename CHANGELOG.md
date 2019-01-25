@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.4.0] - 2019-01-24
+
+### Fixed
+
+- `render_batch` receives jobs in hash form [#21](https://github.com/airbnb/hypernova-ruby/pull/21)
+
 ## [1.3.0] - 2017-07-28
 
 ### Added

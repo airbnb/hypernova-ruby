@@ -38,7 +38,7 @@ describe Hypernova::BlankRenderer do
         }
       }).send(:encode)
 
-      expect(str).to match(/<\/script&gt;/)
+      expect(str).to match(/&lt;&#47;script&gt;/)
       expect(str).to match(/&amp;gt;/)
       expect(str).to match(/&amp;amp;/)
     end

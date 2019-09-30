@@ -21,7 +21,7 @@ class Hypernova::BlankRenderer
   end
 
   def encode
-    JSON.generate(data).gsub(/&/, '&amp;').gsub(/>/, '&gt;')
+    JSON.generate(data).gsub(/&/, '&amp;').gsub(/>/, '&gt;').gsub(/</, '&lt;').gsub(/\//, '&#47;')
   end
 
   def key

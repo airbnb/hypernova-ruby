@@ -183,8 +183,8 @@ class HypernovaPlugin
   end
 
   # NOTE: If an error happens in here, it won’t be caught.
-  def on_error(error, jobs)
-    puts "Oh no, error - #{error}, jobs - #{jobs}"
+  def on_error(error, jobs, jobs_hash)
+    puts "Oh no, error - #{error}, jobs - #{jobs}, jobs_hash - #{jobs_hash}"
   end
 end
 

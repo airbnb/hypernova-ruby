@@ -150,7 +150,7 @@ class HypernovaPlugin
   # prepare_request allows you to alter the request object in any way that you
   # need.
   # Unless manipulated by another plugin, request takes the shape:
-  # { 'component_name.js': { :name => 'component_name.js', :data => {} } }
+  # [{ :name => 'component_name.js', :data => {} }, ...]
   def prepare_request(current_request, original_request)
     current_request.keys.each do |key|
       phrase_hash = req[key][:data][:phrases]

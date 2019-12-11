@@ -19,20 +19,20 @@ module Hypernova::PluginHelper
     end
   end
 
-  def send_request?(jobs_hash)
+  def send_request?(jobs)
     Hypernova.plugins.all? do |plugin|
       if plugin.respond_to?(:send_request?)
-        plugin.send_request?(jobs_hash)
+        plugin.send_request?(jobs)
       else
         true
       end
     end
   end
 
-  def will_send_request(jobs_hash)
+  def will_send_request(jobs)
     Hypernova.plugins.each do |plugin|
       if plugin.respond_to?(:will_send_request)
-        plugin.will_send_request(jobs_hash)
+        plugin.will_send_request(jobs)
       end
     end
   end
@@ -47,13 +47,13 @@ module Hypernova::PluginHelper
     end
   end
 
-  def on_error(error, job = nil, jobs_hash = nil)
-    Hypernova.plugins.each { |plugin| plugin.on_error(error, job, jobs_hash) if plugin.respond_to?(:on_error) }
+  def on_error(error, job = nil, jobs = nil)
+    Hypernova.plugins.each { |plugin| plugin.on_error(error, job, jobs) if plugin.respond_to?(:on_error) }
   end
 
-  def on_success(res, jobs_hash)
+  def on_success(res, jobs)
     Hypernova.plugins.each do |plugin|
-      plugin.on_success(res, jobs_hash) if plugin.respond_to?(:on_success)
+      plugin.on_success(res, jobs) if plugin.respond_to?(:on_success)
     end
   end
 end

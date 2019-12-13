@@ -137,7 +137,7 @@ describe Hypernova::ControllerHelpers do
         test = TestClass.new
         batch = Hypernova::Batch.new(test.hypernova_service)
         response = TestResponse.new
-        job = { name: "mordor.js", data: {} }
+        job = { :name => "mordor.js", :data => {} }
 
         batch.render(job)
 

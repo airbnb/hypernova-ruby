@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
     spec.metadata["allowed_push_host"] = 'https://rubygems.org'
   end
 
-  spec.add_development_dependency "json", "~> 1.8"
+  spec.add_development_dependency "json", "~> 2.5.1"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "rspec", "~> 3.4"
   spec.add_development_dependency "simplecov", "~> 0.11"
@@ -46,5 +46,5 @@ Gem::Specification.new do |spec|
   # see https://github.com/weppos/publicsuffix-ruby/issues/127
   spec.add_development_dependency "public_suffix", "=1.4.6"
 
-  spec.add_runtime_dependency "faraday", "~> 0.8"
+  spec.add_runtime_dependency "faraday", ">= 0.8"
 end

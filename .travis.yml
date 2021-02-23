@@ -11,6 +11,9 @@ rvm:
   - "2.5"
   - "2.6"
   - "2.7"
+gemfile:
+  - gemfiles/faraday-0.8.gemfile
+  - gemfiles/faraday-1.0.gemfile
 before_install:
   - gem update bundler
 script:

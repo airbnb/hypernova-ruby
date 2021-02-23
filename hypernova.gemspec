@@ -38,9 +38,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.4"
   spec.add_development_dependency "simplecov", "~> 0.11"
   spec.add_development_dependency "pry", "~> 0.10"
-  # this is pinned because ruby devs hate semver
-  # see https://github.com/bblimke/webmock/issues/667
-  spec.add_development_dependency "webmock", "=2.1.0"
+  spec.add_development_dependency "webmock", "~> 3.0"
   # below works around travis-ci requiring github-pages-health-check, whose subdep public_suffix
   # stopped being compatible with ruby 1.9
   # see https://github.com/weppos/publicsuffix-ruby/issues/127

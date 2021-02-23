@@ -39,10 +39,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov", "~> 0.11"
   spec.add_development_dependency "pry", "~> 0.10"
   spec.add_development_dependency "webmock", "~> 3.0"
-  # below works around travis-ci requiring github-pages-health-check, whose subdep public_suffix
-  # stopped being compatible with ruby 1.9
-  # see https://github.com/weppos/publicsuffix-ruby/issues/127
-  spec.add_development_dependency "public_suffix", "=1.4.6"
 
   spec.add_runtime_dependency "faraday", "~> 1"
 end

@@ -39,6 +39,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov", "~> 0.11"
   spec.add_development_dependency "pry", "~> 0.10"
   spec.add_development_dependency "webmock", "= 2.3.2"
+  # crack gem added REXML to its dependency at v0.4.5, but it causes an error when used on Ruby 1.9
+  spec.add_development_dependency "crack", "< 0.4.5"
   # below works around travis-ci requiring github-pages-health-check, whose subdep public_suffix
   # stopped being compatible with ruby 1.9
   # see https://github.com/weppos/publicsuffix-ruby/issues/127

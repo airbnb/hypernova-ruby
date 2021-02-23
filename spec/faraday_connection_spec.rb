@@ -21,7 +21,11 @@ describe Hypernova::FaradayConnection do
         }).
         and_call_original
 
-      expect(described_class.build.builder.handlers).to include(Faraday::Adapter::NetHttp)
+      if Gem.loaded_specs['faraday'].version >= Gem::Version.new("1.0.0")
+        expect(described_class.build.builder.adapter).to eq(Faraday::Adapter::NetHttp)
+      else
+        expect(described_class.build.builder.handlers).to include(Faraday::Adapter::NetHttp)
+      end
     end
   end
 end

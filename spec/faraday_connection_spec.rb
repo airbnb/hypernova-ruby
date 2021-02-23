@@ -21,7 +21,7 @@ describe Hypernova::FaradayConnection do
         }).
         and_call_original
 
-      expect(described_class.build.builder.handlers).to include(Faraday::Adapter::NetHttp)
+      expect(described_class.build.builder.adapter).to eq(Faraday::Adapter::NetHttp)
     end
   end
 end

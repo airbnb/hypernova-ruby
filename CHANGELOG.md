@@ -5,6 +5,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [2.0.0] - 2023-10-06
+
+Official deprecation.
+
 ## [1.4.0] - 2019-01-24
 
 ### Fixed

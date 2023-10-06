@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
     'Josh Perez'
   ]
   spec.bindir = "exe"
-  spec.description = "A Ruby client for the Hypernova service"
+  spec.description = "[deprecated] A Ruby client for the Hypernova service"
   spec.email = %w(
     jake.tl@airbnb.com
     ljharb@gmail.com
@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
 
   if spec.respond_to?(:metadata)
     spec.metadata["allowed_push_host"] = 'https://rubygems.org'
+    spec.metadata['deprecated'] = 'true'
   end
 
   spec.add_development_dependency "json", "~> 1.8"

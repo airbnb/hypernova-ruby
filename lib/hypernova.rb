@@ -3,6 +3,8 @@ require "hypernova/configuration"
 require "hypernova/rails/action_controller"
 require "hypernova/version"
 
+warn "[DEPRECATION] The 'hypernova' gem has been deprecated."
+
 module Hypernova
   # thrown by ControllerHelper methods if you don't call hypernova_batch_before first
   class NilBatchError < StandardError; end

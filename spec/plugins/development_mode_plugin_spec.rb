@@ -1,7 +1,7 @@
 require "spec_helper"
 require "hypernova/plugins/development_mode_plugin"
 
-describe DevelopmentModePlugin do
+describe Hypernova::DevelopmentModePlugin do
   describe "#after_response" do
     let(:name1) { "Melkor.jsx" }
     let(:name2) { "Noldor.jsx" }

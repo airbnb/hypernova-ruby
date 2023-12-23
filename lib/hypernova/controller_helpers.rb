@@ -78,17 +78,15 @@ module Hypernova
       return if @hypernova_batch.empty?
 
       jobs = @hypernova_batch.jobs
-      hash = jobs.each_with_object({}) do |job, h|
-        h[job[:name]] = job
-      end
-      hash = prepare_request(hash, hash)
-      if send_request?(hash)
+      jobs = prepare_request(jobs, jobs)
+
+      if send_request?(jobs)
         begin
-          will_send_request(hash)
+          will_send_request(jobs)
           result = @hypernova_batch.submit!
-          on_success(result, hash)
+          on_success(result, jobs)
         rescue StandardError => e
-          on_error(e, nil, hash)
+          on_error(e, nil, jobs)
           result = @hypernova_batch.submit_fallback!
         end
       else

@@ -109,7 +109,7 @@ describe Hypernova::ControllerHelpers do
         allow(test).to receive(:will_send_request).and_raise(error)
         allow(test).to receive(:response).and_return(response)
 
-        expect(test).to receive(:on_error).with(error, nil, hash_including('mordor.js'))
+        expect(test).to receive(:on_error).with(error, nil, array_including(hash_including({ :name => "mordor.js" })))
         expect(batch).to receive(:submit_fallback!)
 
         test.hypernova_render_support {}
@@ -137,14 +137,14 @@ describe Hypernova::ControllerHelpers do
         test = TestClass.new
         batch = Hypernova::Batch.new(test.hypernova_service)
         response = TestResponse.new
-        jobs = { name: "mordor.js", data: {} }
+        job = { :name => "mordor.js", :data => {} }
 
-        batch.render(jobs)
+        batch.render(job)
 
         allow(Hypernova::Batch).to receive(:new).with(test.hypernova_service).and_return(batch)
         allow(test).to receive(:response).and_return(response)
 
-        expect(test).to receive(:on_success).with({}, { "mordor.js" => jobs })
+        expect(test).to receive(:on_success).with({}, [job])
 
         test.hypernova_render_support {}
       end
@@ -282,19 +282,19 @@ describe Hypernova::ControllerHelpers do
     describe "prepare_request plugins" do
       class PrepareRequestPlugin
         def prepare_request(current_request, _)
-          current_request['test'][:data][:what] = 'who?'
+          current_request[0][:data][:what] = 'who?'
         end
       end
 
       it 'should be able to alter the request data' do
         plugin = PrepareRequestPlugin.new
         Hypernova.add_plugin!(plugin)
-        request = {
-          'test' => {
+        request = [
+          {
             :name => 'test',
             :data => request_data,
           },
-        }
+        ]
         expect(plugin).to receive(:prepare_request).with(request, request).and_call_original
         expect(full_controller.hypernova_service).to receive(:render_batch).with({
           '0' => {
